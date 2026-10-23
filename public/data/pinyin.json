@@ -1,0 +1,624 @@
+{
+ "version": 1,
+ "items": [
+  {
+   "id": "py-tones",
+   "kind": "tone",
+   "title": "4 thanh điệu",
+   "intro": "Tiếng Trung có 4 thanh và 1 thanh nhẹ. Cùng âm \"ma\" nhưng đổi thanh là đổi nghĩa. Nghe thật kỹ rồi đọc theo.",
+   "sounds": [
+    {
+     "label": "mā",
+     "zh": "妈",
+     "pinyin": "mā",
+     "vi": "mẹ",
+     "tip": "Thanh 1: ngang và cao, giữ đều giọng như đang hát một nốt cao."
+    },
+    {
+     "label": "má",
+     "zh": "麻",
+     "pinyin": "má",
+     "vi": "cây gai; tê",
+     "tip": "Thanh 2: đi lên từ giữa lên cao, gần giống thanh sắc tiếng Việt."
+    },
+    {
+     "label": "mǎ",
+     "zh": "马",
+     "pinyin": "mǎ",
+     "vi": "con ngựa",
+     "tip": "Thanh 3: xuống thấp rồi hơi lên, gần giống thanh hỏi. Khi nói nhanh thường chỉ hạ thấp giọng."
+    },
+    {
+     "label": "mà",
+     "zh": "骂",
+     "pinyin": "mà",
+     "vi": "mắng",
+     "tip": "Thanh 4: rơi mạnh từ cao xuống thấp, dứt khoát như khi ra lệnh \"Đi!\"."
+    },
+    {
+     "label": "ma",
+     "zh": "吗",
+     "pinyin": "ma",
+     "vi": "(trợ từ hỏi)",
+     "tip": "Thanh nhẹ: đọc ngắn, nhẹ, không dấu."
+    }
+   ]
+  },
+  {
+   "id": "py-tones-2",
+   "kind": "tone",
+   "title": "Luyện thêm thanh điệu",
+   "intro": "Thêm hai bộ âm để tai quen với 4 thanh. Ở mỗi âm, đọc to theo mẫu 3 lần.",
+   "sounds": [
+    {
+     "label": "bā",
+     "zh": "八",
+     "pinyin": "bā",
+     "vi": "số 8"
+    },
+    {
+     "label": "bá",
+     "zh": "拔",
+     "pinyin": "bá",
+     "vi": "nhổ"
+    },
+    {
+     "label": "bǎ",
+     "zh": "把",
+     "pinyin": "bǎ",
+     "vi": "cầm, nắm"
+    },
+    {
+     "label": "bà",
+     "zh": "爸",
+     "pinyin": "bà",
+     "vi": "bố"
+    },
+    {
+     "label": "yī",
+     "zh": "一",
+     "pinyin": "yī",
+     "vi": "số 1"
+    },
+    {
+     "label": "yí",
+     "zh": "姨",
+     "pinyin": "yí",
+     "vi": "dì"
+    },
+    {
+     "label": "yǐ",
+     "zh": "椅",
+     "pinyin": "yǐ",
+     "vi": "ghế (椅子)"
+    },
+    {
+     "label": "yì",
+     "zh": "意",
+     "pinyin": "yì",
+     "vi": "ý"
+    }
+   ]
+  },
+  {
+   "id": "py-initials-1",
+   "kind": "initial",
+   "title": "Thanh mẫu: b p m f d t n l",
+   "intro": "Thanh mẫu là phụ âm đầu. Cặp b/p và d/t khác nhau ở chỗ có bật hơi hay không: đặt bàn tay trước miệng, âm bật hơi sẽ thổi gió vào tay.",
+   "sounds": [
+    {
+     "label": "b",
+     "zh": "八",
+     "pinyin": "bā",
+     "vi": "số 8",
+     "tip": "Gần \"p\" tiếng Việt, không bật hơi. Không đọc nặng như \"b\" của tiếng Việt."
+    },
+    {
+     "label": "p",
+     "zh": "苹果",
+     "pinyin": "píngguǒ",
+     "vi": "quả táo",
+     "tip": "\"p\" bật hơi mạnh, thổi gió ra."
+    },
+    {
+     "label": "m",
+     "zh": "妈妈",
+     "pinyin": "māma",
+     "vi": "mẹ",
+     "tip": "Như \"m\" tiếng Việt."
+    },
+    {
+     "label": "f",
+     "zh": "飞机",
+     "pinyin": "fēijī",
+     "vi": "máy bay",
+     "tip": "Như \"ph\" tiếng Việt."
+    },
+    {
+     "label": "d",
+     "zh": "大",
+     "pinyin": "dà",
+     "vi": "to, lớn",
+     "tip": "Gần \"t\" tiếng Việt, không bật hơi."
+    },
+    {
+     "label": "t",
+     "zh": "太阳",
+     "pinyin": "tàiyáng",
+     "vi": "mặt trời",
+     "tip": "Như \"th\" tiếng Việt, bật hơi."
+    },
+    {
+     "label": "n",
+     "zh": "你",
+     "pinyin": "nǐ",
+     "vi": "bạn",
+     "tip": "Như \"n\" tiếng Việt."
+    },
+    {
+     "label": "l",
+     "zh": "来",
+     "pinyin": "lái",
+     "vi": "đến",
+     "tip": "Như \"l\" tiếng Việt."
+    }
+   ]
+  },
+  {
+   "id": "py-initials-2",
+   "kind": "initial",
+   "title": "Thanh mẫu: g k h j q x",
+   "intro": "g/k và j/q cũng là cặp không bật hơi / bật hơi. j q x chỉ đi với i và ü.",
+   "sounds": [
+    {
+     "label": "g",
+     "zh": "哥哥",
+     "pinyin": "gēge",
+     "vi": "anh trai",
+     "tip": "Gần \"c/k\" tiếng Việt, không bật hơi."
+    },
+    {
+     "label": "k",
+     "zh": "看",
+     "pinyin": "kàn",
+     "vi": "nhìn, xem",
+     "tip": "\"k\" bật hơi mạnh."
+    },
+    {
+     "label": "h",
+     "zh": "好",
+     "pinyin": "hǎo",
+     "vi": "tốt",
+     "tip": "Gần \"kh\" tiếng Việt (xát ở cuống họng), không phải \"h\" nhẹ."
+    },
+    {
+     "label": "j",
+     "zh": "鸡",
+     "pinyin": "jī",
+     "vi": "con gà",
+     "tip": "Gần \"ch\" tiếng Việt, mặt lưỡi áp lên vòm miệng, không bật hơi."
+    },
+    {
+     "label": "q",
+     "zh": "七",
+     "pinyin": "qī",
+     "vi": "số 7",
+     "tip": "Như j nhưng bật hơi."
+    },
+    {
+     "label": "x",
+     "zh": "小",
+     "pinyin": "xiǎo",
+     "vi": "nhỏ",
+     "tip": "Gần \"x\" tiếng Việt nhưng mặt lưỡi nâng cao, kéo mép môi sang hai bên."
+    }
+   ]
+  },
+  {
+   "id": "py-initials-3",
+   "kind": "initial",
+   "title": "Thanh mẫu: zh ch sh r z c s y w",
+   "intro": "zh ch sh r là nhóm uốn lưỡi: cong đầu lưỡi lên chạm gần vòm miệng. z c s là nhóm đầu lưỡi thẳng, chạm sau răng trên.",
+   "sounds": [
+    {
+     "label": "zh",
+     "zh": "中文",
+     "pinyin": "Zhōngwén",
+     "vi": "tiếng Trung",
+     "tip": "Uốn lưỡi, gần \"tr\" tiếng Việt, không bật hơi."
+    },
+    {
+     "label": "ch",
+     "zh": "吃",
+     "pinyin": "chī",
+     "vi": "ăn",
+     "tip": "Uốn lưỡi như zh nhưng bật hơi."
+    },
+    {
+     "label": "sh",
+     "zh": "是",
+     "pinyin": "shì",
+     "vi": "là",
+     "tip": "Uốn lưỡi, gần \"s\" của người miền Bắc đọc chuẩn (s nặng)."
+    },
+    {
+     "label": "r",
+     "zh": "热",
+     "pinyin": "rè",
+     "vi": "nóng",
+     "tip": "Uốn lưỡi, gần \"r\" nhưng không rung lưỡi."
+    },
+    {
+     "label": "z",
+     "zh": "早上",
+     "pinyin": "zǎoshang",
+     "vi": "buổi sáng",
+     "tip": "Đầu lưỡi chạm sau răng, đọc như \"ch\" thật nhanh rồi xì hơi (ts)."
+    },
+    {
+     "label": "c",
+     "zh": "草莓",
+     "pinyin": "cǎoméi",
+     "vi": "dâu tây",
+     "tip": "Như z nhưng bật hơi mạnh."
+    },
+    {
+     "label": "s",
+     "zh": "三",
+     "pinyin": "sān",
+     "vi": "số 3",
+     "tip": "Như \"x\" tiếng Việt."
+    },
+    {
+     "label": "y",
+     "zh": "鱼",
+     "pinyin": "yú",
+     "vi": "con cá",
+     "tip": "Viết y khi âm i, ü đứng đầu từ."
+    },
+    {
+     "label": "w",
+     "zh": "我",
+     "pinyin": "wǒ",
+     "vi": "tôi",
+     "tip": "Viết w khi âm u đứng đầu từ, đọc gần \"u\"."
+    }
+   ]
+  },
+  {
+   "id": "py-finals-1",
+   "kind": "final",
+   "title": "Vận mẫu đơn: a o e i u ü",
+   "intro": "Vận mẫu là phần vần. Sáu vần đơn này là nền cho mọi vần khác. Chú ý e và ü, hai âm người Việt hay đọc sai.",
+   "sounds": [
+    {
+     "label": "a",
+     "zh": "大",
+     "pinyin": "dà",
+     "vi": "to, lớn",
+     "tip": "Như \"a\" tiếng Việt, mở miệng to."
+    },
+    {
+     "label": "o",
+     "zh": "我",
+     "pinyin": "wǒ",
+     "vi": "tôi",
+     "tip": "Gần \"ô\" rồi trượt sang \"ua\"."
+    },
+    {
+     "label": "e",
+     "zh": "喝",
+     "pinyin": "hē",
+     "vi": "uống",
+     "tip": "Gần \"ưa\": bắt đầu từ \"ư\" rồi mở sang \"ơ\". Không đọc là \"e\"."
+    },
+    {
+     "label": "i",
+     "zh": "一",
+     "pinyin": "yī",
+     "vi": "số 1",
+     "tip": "Như \"i\" tiếng Việt."
+    },
+    {
+     "label": "u",
+     "zh": "五",
+     "pinyin": "wǔ",
+     "vi": "số 5",
+     "tip": "Như \"u\" tiếng Việt, tròn môi."
+    },
+    {
+     "label": "ü",
+     "zh": "鱼",
+     "pinyin": "yú",
+     "vi": "con cá",
+     "tip": "Chúm tròn môi như đọc \"u\" nhưng lưỡi đọc \"i\", gần \"uy\" đọc liền. Sau j q x y, ü viết thành u (ju, qu, xu, yu)."
+    }
+   ]
+  },
+  {
+   "id": "py-finals-2",
+   "kind": "final",
+   "title": "Vận mẫu kép: ai ei ao ou er",
+   "intro": "Vần kép trượt từ âm thứ nhất sang âm thứ hai. er là âm uốn lưỡi đặc biệt.",
+   "sounds": [
+    {
+     "label": "ai",
+     "zh": "爱",
+     "pinyin": "ài",
+     "vi": "yêu",
+     "tip": "Như \"ai\" tiếng Việt."
+    },
+    {
+     "label": "ei",
+     "zh": "黑色",
+     "pinyin": "hēisè",
+     "vi": "màu đen",
+     "tip": "Gần \"ây\"."
+    },
+    {
+     "label": "ao",
+     "zh": "好",
+     "pinyin": "hǎo",
+     "vi": "tốt",
+     "tip": "Như \"ao\" tiếng Việt."
+    },
+    {
+     "label": "ou",
+     "zh": "狗",
+     "pinyin": "gǒu",
+     "vi": "con chó",
+     "tip": "Gần \"âu\"."
+    },
+    {
+     "label": "er",
+     "zh": "二",
+     "pinyin": "èr",
+     "vi": "số 2",
+     "tip": "Đọc \"ơ\" rồi cong đầu lưỡi lên."
+    }
+   ]
+  },
+  {
+   "id": "py-finals-3",
+   "kind": "final",
+   "title": "Vần mũi: an en ang eng ong",
+   "intro": "Vần có -n kết thúc ở đầu lưỡi, vần có -ng kết thúc ở cuống lưỡi, giống tiếng Việt.",
+   "sounds": [
+    {
+     "label": "an",
+     "zh": "三",
+     "pinyin": "sān",
+     "vi": "số 3",
+     "tip": "Như \"an\" tiếng Việt."
+    },
+    {
+     "label": "en",
+     "zh": "门",
+     "pinyin": "mén",
+     "vi": "cái cửa",
+     "tip": "Gần \"ân\"."
+    },
+    {
+     "label": "ang",
+     "zh": "羊",
+     "pinyin": "yáng",
+     "vi": "con dê",
+     "tip": "Như \"ang\" tiếng Việt."
+    },
+    {
+     "label": "eng",
+     "zh": "风",
+     "pinyin": "fēng",
+     "vi": "gió",
+     "tip": "Gần \"âng\"."
+    },
+    {
+     "label": "ong",
+     "zh": "中文",
+     "pinyin": "Zhōngwén",
+     "vi": "tiếng Trung",
+     "tip": "Gần \"ung\" tiếng Việt, tròn môi."
+    }
+   ]
+  },
+  {
+   "id": "py-finals-4",
+   "kind": "final",
+   "title": "Vần bắt đầu bằng i",
+   "intro": "Đứng đầu từ, i được viết thành y: ia → ya, ie → ye, iao → yao.",
+   "sounds": [
+    {
+     "label": "ia",
+     "zh": "家",
+     "pinyin": "jiā",
+     "vi": "nhà",
+     "tip": "Gần \"ia\" đọc liền."
+    },
+    {
+     "label": "ie",
+     "zh": "姐姐",
+     "pinyin": "jiějie",
+     "vi": "chị gái",
+     "tip": "Gần \"iê\"."
+    },
+    {
+     "label": "iao",
+     "zh": "小",
+     "pinyin": "xiǎo",
+     "vi": "nhỏ",
+     "tip": "Gần \"eo\" có âm i ở đầu (iao)."
+    },
+    {
+     "label": "iu",
+     "zh": "六",
+     "pinyin": "liù",
+     "vi": "số 6",
+     "tip": "Viết iu nhưng đọc gần \"iêu\"."
+    },
+    {
+     "label": "ian",
+     "zh": "天",
+     "pinyin": "tiān",
+     "vi": "trời",
+     "tip": "Đọc là \"iên\", không phải \"ian\"."
+    },
+    {
+     "label": "in",
+     "zh": "今天",
+     "pinyin": "jīntiān",
+     "vi": "hôm nay",
+     "tip": "Như \"in\" tiếng Việt."
+    },
+    {
+     "label": "ing",
+     "zh": "星星",
+     "pinyin": "xīngxing",
+     "vi": "ngôi sao",
+     "tip": "Gần \"inh\"."
+    },
+    {
+     "label": "iang",
+     "zh": "两",
+     "pinyin": "liǎng",
+     "vi": "hai",
+     "tip": "Gần \"eng\"/\"iang\"."
+    },
+    {
+     "label": "iong",
+     "zh": "熊猫",
+     "pinyin": "xióngmāo",
+     "vi": "gấu trúc",
+     "tip": "Gần \"iung\"."
+    }
+   ]
+  },
+  {
+   "id": "py-finals-5",
+   "kind": "final",
+   "title": "Vần bắt đầu bằng u và ü",
+   "intro": "Đứng đầu từ, u viết thành w (ua → wa), ü viết thành yu (üe → yue).",
+   "sounds": [
+    {
+     "label": "ua",
+     "zh": "花",
+     "pinyin": "huā",
+     "vi": "bông hoa",
+     "tip": "Gần \"oa\"."
+    },
+    {
+     "label": "uo",
+     "zh": "我",
+     "pinyin": "wǒ",
+     "vi": "tôi",
+     "tip": "Gần \"ua\"/\"uô\"."
+    },
+    {
+     "label": "uai",
+     "zh": "快乐",
+     "pinyin": "kuàilè",
+     "vi": "vui vẻ",
+     "tip": "Gần \"oai\"."
+    },
+    {
+     "label": "ui",
+     "zh": "对不起",
+     "pinyin": "duìbuqǐ",
+     "vi": "xin lỗi",
+     "tip": "Viết ui nhưng đọc gần \"uây\"."
+    },
+    {
+     "label": "uan",
+     "zh": "玩",
+     "pinyin": "wán",
+     "vi": "chơi",
+     "tip": "Gần \"oan\"."
+    },
+    {
+     "label": "un",
+     "zh": "春天",
+     "pinyin": "chūntiān",
+     "vi": "mùa xuân",
+     "tip": "Gần \"uân\"."
+    },
+    {
+     "label": "uang",
+     "zh": "黄色",
+     "pinyin": "huángsè",
+     "vi": "màu vàng",
+     "tip": "Gần \"oang\"."
+    },
+    {
+     "label": "üe",
+     "zh": "雪",
+     "pinyin": "xuě",
+     "vi": "tuyết",
+     "tip": "Gần \"uê\" với môi chúm tròn."
+    },
+    {
+     "label": "üan",
+     "zh": "远",
+     "pinyin": "yuǎn",
+     "vi": "xa",
+     "tip": "Gần \"uyen\" với môi chúm tròn."
+    },
+    {
+     "label": "ün",
+     "zh": "云",
+     "pinyin": "yún",
+     "vi": "mây",
+     "tip": "Gần \"uyn\" với môi chúm tròn."
+    }
+   ]
+  },
+  {
+   "id": "py-sandhi",
+   "kind": "sandhi",
+   "title": "Biến điệu: khi thanh tự đổi",
+   "intro": "Khi đứng cạnh nhau, vài thanh tự đổi để dễ đọc. Chữ viết pinyin vẫn giữ thanh gốc ở 你好, nhưng khi nói thì đọc theo quy tắc dưới đây.",
+   "sounds": [
+    {
+     "label": "3 + 3 → 2 + 3",
+     "zh": "你好",
+     "pinyin": "nǐ hǎo",
+     "vi": "xin chào",
+     "tip": "Hai thanh 3 đứng liền: thanh 3 thứ nhất đọc thành thanh 2 (ní hǎo)."
+    },
+    {
+     "label": "bù → bú",
+     "zh": "不是",
+     "pinyin": "bú shì",
+     "vi": "không phải",
+     "tip": "不 đứng trước thanh 4 đọc thành thanh 2."
+    },
+    {
+     "label": "bù giữ nguyên",
+     "zh": "不好",
+     "pinyin": "bù hǎo",
+     "vi": "không tốt",
+     "tip": "Trước thanh 1, 2, 3, 不 vẫn đọc thanh 4."
+    },
+    {
+     "label": "yī → yí",
+     "zh": "一个",
+     "pinyin": "yí ge",
+     "vi": "một cái",
+     "tip": "一 đứng trước thanh 4 (hoặc thanh nhẹ gốc thanh 4 như 个) đọc thành thanh 2."
+    },
+    {
+     "label": "yī → yì",
+     "zh": "一天",
+     "pinyin": "yì tiān",
+     "vi": "một ngày",
+     "tip": "一 đứng trước thanh 1, 2, 3 đọc thành thanh 4."
+    },
+    {
+     "label": "thanh nhẹ",
+     "zh": "妈妈",
+     "pinyin": "māma",
+     "vi": "mẹ",
+     "tip": "Chữ lặp lại thứ hai thường đọc thanh nhẹ: māma, bàba, gēge."
+    }
+   ]
+  }
+ ]
+}
