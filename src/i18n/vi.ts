@@ -85,6 +85,27 @@ export const vi = {
     },
   },
 
+  path: {
+    title: 'Lộ trình từ số 0',
+    intro: 'Chưa biết gì cũng không sao: đi lần lượt từng bước, mỗi ngày một chút.',
+    step: (n: number) => `Bước ${n}`,
+    progress: (a: number, b: number) => `${a}/${b}`,
+    go: 'Học bước này',
+    done: 'Đã xong',
+    showAll: (n: number) => `Xem cả ${n} bước`,
+    stages: {
+      tones: { title: 'Làm quen 4 thanh điệu', text: 'Nghe và đọc theo mā má mǎ mà, giống dấu thanh tiếng Việt.' },
+      sounds: { title: 'Âm dễ: a o e i u, b p m f', text: 'Những âm gần với tiếng Việt nhất.' },
+      greet: { title: 'Câu chào đầu tiên', text: '你好, 谢谢, 再见: chào, cảm ơn, tạm biệt.' },
+      numbers: { title: 'Đếm từ 1 đến 10', text: 'Học số đếm và viết chữ số 一 二 三.' },
+      pictographs: { title: 'Chữ tượng hình', text: 'Chữ vẽ từ đồ vật ngoài đời: 日 mặt trời, 山 núi, 木 cây.' },
+      moreSounds: { title: 'Thêm âm mới', text: 'zh ch sh, j q x và các vần ghép.' },
+      family: { title: 'Gia đình và giới thiệu', text: 'Bố, mẹ, anh, chị; nói tên và tuổi của mình.' },
+      animals: { title: 'Con vật và màu sắc', text: 'Mèo, chó, gấu trúc; đỏ, xanh, vàng.' },
+      food: { title: 'Ăn uống', text: 'Cơm, nước, hoa quả và câu gọi món.' },
+    } as Record<string, { title: string; text: string }>,
+  },
+
   welcome: {
     title: 'Chào mừng đến với ZhongVui!',
     text: 'Học tiếng Trung từ con số 0: phát âm pinyin, từ vựng có hình, tập viết chữ Hán và nói những câu đầu tiên. Không cần tài khoản, mọi thứ lưu trên máy này.',
@@ -178,6 +199,18 @@ export const vi = {
     words: 'Từ có chữ này',
     origin: 'Nguồn gốc chữ',
     written: 'đã viết',
+    kinds: {
+      pictograph: { name: 'Chữ tượng hình', text: 'Vẽ lại sự vật ngoài đời' },
+      indicative: { name: 'Chữ chỉ sự', text: 'Dùng nét để chỉ ý: số đếm, trên, dưới' },
+      compound: { name: 'Chữ hội ý', text: 'Ghép các chữ lại để tạo nghĩa mới' },
+    } as Record<string, { name: string; text: string }>,
+    real: 'Ngoài đời',
+    drawn: 'Vẽ lại',
+    glyph: 'Chữ Hán',
+    pictoTitle: 'Chữ tượng hình: nhìn là nhớ',
+    pictoText: (n: number) =>
+      `${n} chữ được vẽ từ đồ vật ngoài đời. Nhìn mặt trời, ngọn núi, cái cây… rồi xem chúng biến thành chữ Hán thế nào. Chữ có hình nhỏ ở góc là chữ tượng hình.`,
+    pictoGame: 'Chơi "Nhìn hình đoán chữ"',
   },
 
   phrases: {
@@ -224,9 +257,11 @@ export const vi = {
       meaning: { title: 'Đoán nghĩa', text: 'Nhìn chữ Hán, chọn nghĩa tiếng Việt.' },
       tone: { title: 'Đoán thanh điệu', text: 'Nghe một chữ, chọn thanh 1, 2, 3 hay 4.' },
       match: { title: 'Ghép cặp', text: 'Nối chữ Hán với hình hoặc nghĩa của nó.' },
+      glyph: { title: 'Nhìn hình đoán chữ', text: 'Nhìn đồ vật ngoài đời, chọn chữ tượng hình.' },
     } as Record<string, { title: string; text: string }>,
     pictureQ: 'Nghe và chọn hình đúng',
     meaningQ: 'Từ này nghĩa là gì?',
+    glyphQ: 'Chữ nào được vẽ từ hình này?',
     matchQ: 'Chạm một chữ rồi chạm vào nghĩa của nó',
     topic: 'Chủ đề',
     result: (a: number, b: number) => `Bạn trả lời đúng ${a}/${b} câu`,

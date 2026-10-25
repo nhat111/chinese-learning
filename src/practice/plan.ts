@@ -1,5 +1,7 @@
 // The daily lesson (pure, tested): a few new or due words, then quick
 // questions on them, the tones, one character to write and one sentence to say.
+// New words and characters come in content order (greetings and numbers
+// first), so a learner starting from zero meets the easiest ones first.
 
 import type { CardState } from '../srs/sm2';
 import type { Learner } from '../storage/prefs';
@@ -53,7 +55,7 @@ export function buildDailyPlan(
   const words = kid ? content.words.filter((w) => w.level <= 2) : content.words;
   const phrases = kid ? content.phrases.filter((p) => p.level === 1) : content.phrases;
 
-  const newWords = pickRound(words, (w) => srsKey.word(w.id), srs, today, BASE.word * scale, rng);
+  const newWords = pickRound(words, (w) => srsKey.word(w.id), srs, today, BASE.word * scale, rng, true);
   const steps: PlanStep[] = newWords.map((item) => ({ kind: 'word', item }));
 
   // Questions on today's words first, then others that are due.
@@ -76,7 +78,7 @@ export function buildDailyPlan(
   const tones = pickRound(toneTargets([...words, ...content.hanzi.map((h) => ({ ...h, zh: h.char }))]), (t) => srsKey.tone(t.zh), srs, today, BASE.tone * scale, rng);
   for (const t of tones) steps.push({ kind: 'tone', question: toneQuestion(t) });
 
-  for (const item of pickRound(content.hanzi, (h) => srsKey.hanzi(h.id), srs, today, BASE.hanzi * scale, rng)) {
+  for (const item of pickRound(content.hanzi, (h) => srsKey.hanzi(h.id), srs, today, BASE.hanzi * scale, rng, true)) {
     steps.push({ kind: 'hanzi', item });
   }
   for (const item of pickRound(phrases, (p) => srsKey.phrase(p.id), srs, today, BASE.phrase * scale, rng)) {

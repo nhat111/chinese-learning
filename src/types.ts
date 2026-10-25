@@ -66,6 +66,13 @@ export interface HanziWord {
   vi: string;
 }
 
+/**
+ * How a character was formed: a drawing of a real thing (pictograph, 象形),
+ * strokes pointing at an idea (indicative, 指事: numbers, 上, 下) or two
+ * characters put together (compound, 会意: 好 = 女 + 子).
+ */
+export type HanziKind = 'pictograph' | 'indicative' | 'compound';
+
 /** A character to learn to write (hanzi.json). */
 export interface HanziItem {
   /** `hz-<n>`. */
@@ -77,7 +84,14 @@ export interface HanziItem {
   pinyin: string;
   vi: string;
   hv: string;
+  /** The real thing (pictographs) or a picture of the meaning. */
   emoji?: string;
+  kind?: HanziKind;
+  /**
+   * Pictographs: SVG path data (viewBox 0 0 100 100, drawn as strokes) of the
+   * thing drawn simply, the step between the emoji and the character.
+   */
+  sketch?: string;
   /** How the character came to look like this (pictographs), or a memory hook. */
   note?: string;
   /** 1-3 words using the character. */

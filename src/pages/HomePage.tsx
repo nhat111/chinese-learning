@@ -5,6 +5,7 @@ import { Welcome } from '../components/Welcome';
 import { SpeakButton, ZhText } from '../components/Zh';
 import { useContent } from '../data/content';
 import { vi } from '../i18n/vi';
+import { buildPath, currentStage } from '../practice/path';
 import { planSize } from '../practice/plan';
 import { seededRng } from '../practice/quiz';
 import { dueKeys, greetingSlot, streak, totalStars, weekDays } from '../practice/stats';
@@ -68,6 +69,8 @@ export function HomePage() {
           </div>
         )}
       </section>
+
+      <PathCard />
 
       <section className="card today stack-sm">
         <div className="row row--between">
@@ -135,5 +138,60 @@ export function HomePage() {
         </div>
       </section>
     </div>
+  );
+}
+
+/** The path from zero: every stage with its progress, the current one opened. Hidden once done. */
+function PathCard() {
+  const { srs } = useProgress();
+  const [all, setAll] = useState(false);
+  const pinyin = useContent('pinyin');
+  const words = useContent('words');
+  const phrases = useContent('phrases');
+  const hanzi = useContent('hanzi');
+  if (pinyin.status !== 'ready' || words.status !== 'ready' || phrases.status !== 'ready' || hanzi.status !== 'ready') return null;
+  const path = buildPath({ pinyin: pinyin.items, words: words.items, phrases: phrases.items, hanzi: hanzi.items }, srs);
+  const current = currentStage(path);
+  if (current < 0) return null;
+  // Collapsed: the step before the current one and the next two.
+  const from = all ? 0 : Math.max(0, current - 1);
+  const to = all ? path.length : Math.min(path.length, current + 3);
+  return (
+    <section className="card path stack-sm">
+      <div className="row row--between">
+        <h2>{vi.path.title}</h2>
+        <span className="count-badge">{vi.path.progress(path.filter((s) => s.complete).length, path.length)}</span>
+      </div>
+      <p className="muted">{vi.path.intro}</p>
+      <ol className="path-list">
+        {path.slice(from, to).map((s, j) => {
+          const i = from + j;
+          const label = vi.path.stages[s.id];
+          return (
+            <li key={s.id}>
+              <Link to={s.to} className={`path-stage${s.complete ? ' is-done' : ''}${i === current ? ' is-current' : ''}`} aria-current={i === current ? 'step' : undefined}>
+                <span className="path-dot" aria-label={s.complete ? vi.path.done : vi.path.step(i + 1)}>
+                  {s.complete ? <Icon name="check" size={16} /> : i + 1}
+                </span>
+                <span className="path-text">
+                  <strong>{label.title}</strong>
+                  {i === current && <span className="muted small">{label.text}</span>}
+                </span>
+                <span className="path-count mono small">{vi.path.progress(s.done, s.total)}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ol>
+      {(from > 0 || to < path.length) && !all && (
+        <button type="button" className="btn btn--ghost" onClick={() => setAll(true)}>
+          {vi.path.showAll(path.length)}
+        </button>
+      )}
+      <Link to={path[current].to} className="btn btn--primary">
+        <Icon name="play" size={18} />
+        {vi.path.go}
+      </Link>
+    </section>
   );
 }

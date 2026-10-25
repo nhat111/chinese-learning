@@ -52,6 +52,18 @@ describe('content files', () => {
     expect(first.sounds.map((s) => toneOf(s.pinyin))).toEqual([1, 2, 3, 4, 5]);
   });
 
+  it('pictographs map a real thing to the character', () => {
+    const picto = hanzi.items.filter((h) => h.kind === 'pictograph');
+    expect(picto.length).toBeGreaterThanOrEqual(20);
+    for (const h of picto) {
+      expect(h.emoji, h.char).toBeTruthy();
+      expect(h.sketch, h.char).toBeTruthy();
+      expect(h.note, h.char).toBeTruthy();
+    }
+    const emoji = picto.map((h) => h.emoji);
+    expect(new Set(emoji).size).toBe(emoji.length);
+  });
+
   it('single-character words agree with the hanzi list', () => {
     for (const h of hanzi.items) {
       const w = words.items.find((x) => x.zh === h.char);

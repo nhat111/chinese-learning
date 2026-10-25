@@ -1,7 +1,7 @@
 // Question building for the games and the daily plan (pure, tested).
 
 import type { CardState } from '../srs/sm2';
-import type { WordItem } from '../types';
+import type { HanziItem, WordItem } from '../types';
 import { isSingleSyllable, toneOf, toneVariants } from './pinyin';
 
 /** Random number in [0, 1). Tests pass a seeded one. */
@@ -30,7 +30,8 @@ export function seededRng(seed: number): Rng {
 
 /**
  * Picks `n` items for a round: due reviews first (oldest first), then items
- * never practiced, then the rest, each group shuffled.
+ * never practiced, then the rest, each group shuffled. With `freshInOrder` new
+ * items keep their content order (easiest first), for learners starting from zero.
  */
 export function pickRound<T>(
   items: readonly T[],
@@ -39,6 +40,7 @@ export function pickRound<T>(
   today: string,
   n: number,
   rng: Rng = Math.random,
+  freshInOrder = false,
 ): T[] {
   const due: T[] = [];
   const fresh: T[] = [];
@@ -50,7 +52,7 @@ export function pickRound<T>(
     else rest.push(it);
   }
   const dueSorted = shuffle(due, rng).sort((a, b) => srs[keyOf(a)].due.localeCompare(srs[keyOf(b)].due));
-  return [...dueSorted, ...shuffle(fresh, rng), ...shuffle(rest, rng)].slice(0, n);
+  return [...dueSorted, ...(freshInOrder ? fresh : shuffle(fresh, rng)), ...shuffle(rest, rng)].slice(0, n);
 }
 
 export interface Question<T> {
@@ -123,4 +125,16 @@ export function toneTargets<T extends ToneTarget>(items: readonly T[]): T[] {
 
 export function toneQuestion(target: ToneTarget): ToneQuestion {
   return { target, options: toneVariants(target.pinyin), answer: toneOf(target.pinyin) - 1 };
+}
+
+/** Characters drawn from real things, with the picture and sketch the glyph game shows. */
+export function pictographs(items: readonly HanziItem[]): HanziItem[] {
+  return items.filter((h) => h.kind === 'pictograph' && h.emoji && h.sketch);
+}
+
+/** "See the picture, pick the character": the target and `count - 1` other characters. */
+export function glyphQuestion(target: HanziItem, pool: readonly HanziItem[], rng: Rng = Math.random, count = 4): Question<HanziItem> {
+  const others = shuffle(pool.filter((h) => h.char !== target.char), rng).slice(0, count - 1);
+  const options = shuffle([target, ...others], rng);
+  return { target, options, answer: options.indexOf(target) };
 }

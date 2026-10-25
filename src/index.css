@@ -1635,3 +1635,167 @@ fieldset {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* ---------- Path from zero ---------- */
+
+.path-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.path-stage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  text-decoration: none;
+}
+.path-stage:hover {
+  background: var(--surface-2);
+}
+.path-stage.is-current {
+  background: var(--primary-soft);
+}
+.path-dot {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.path-stage.is-current .path-dot {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-text);
+}
+.path-stage.is-done .path-dot {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+.path-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.path-stage.is-done .path-text strong {
+  font-weight: 600;
+  color: var(--muted);
+}
+.path-count {
+  flex: none;
+  color: var(--muted);
+}
+
+/* ---------- Pictographs: real thing → drawing → character ---------- */
+
+.picto-strip,
+.glyph-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--muted);
+}
+.picto-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  min-width: 84px;
+}
+.picto-step figcaption {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.picto-emoji {
+  font-size: calc(3.2rem * var(--zh-scale));
+  line-height: 76px;
+}
+.picto-char {
+  font-family: var(--font-kai);
+  font-size: calc(3.6rem * var(--zh-scale));
+  line-height: 76px;
+  color: var(--text);
+}
+.picto-redraw {
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  cursor: pointer;
+}
+.sketch {
+  display: block;
+}
+.sketch path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: sketch-draw 0.6s ease-out forwards;
+}
+@keyframes sketch-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sketch path {
+    stroke-dashoffset: 0;
+  }
+}
+.glyph-prompt .sketch {
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+.tile-char {
+  font-family: var(--font-kai);
+  font-size: calc(2.8rem * var(--zh-scale));
+  line-height: 1.2;
+}
+.char-tile {
+  position: relative;
+}
+.char-tile-pic {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.9rem;
+}
+.kind-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--tone-red-bg);
+  color: var(--tone-red);
+  font-weight: 700;
+}
+.picto-intro-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 16px;
+  font-family: var(--font-kai);
+  font-size: 1.3rem;
+}
+.picto-intro-row > span {
+  white-space: nowrap;
+}

@@ -4,10 +4,12 @@ import { ContentGate } from '../components/ContentGate';
 import { HanziWriterBox } from '../components/HanziWriterBox';
 import { Icon } from '../components/Icon';
 import { PageHeader } from '../components/Layout';
+import { PictographStrip } from '../components/Pictograph';
 import { ZhText } from '../components/Zh';
 import { useContent } from '../data/content';
 import { vi } from '../i18n/vi';
 import { HANZI_GROUPS, srsKey } from '../practice/decks';
+import { pictographs } from '../practice/quiz';
 import { playEffect } from '../speech';
 import { usePrefs } from '../storage/prefs';
 import { recordAnswer, useProgress } from '../storage/progress';
@@ -22,8 +24,9 @@ export function HanziPage() {
         <p className="muted">{vi.hanzi.intro}</p>
       </PageHeader>
       <ContentGate state={state}>
-        {(items) =>
-          HANZI_GROUPS.map((g) => {
+        {(items) => [
+          <PictographIntro key="picto" count={pictographs(items).length} />,
+          ...HANZI_GROUPS.map((g) => {
             const list = items.filter((h) => h.group === g);
             if (list.length === 0) return null;
             return (
@@ -36,15 +39,48 @@ export function HanziPage() {
                         {h.char}
                       </span>
                       <span className="char-tile-vi">{h.vi.split(';')[0]}</span>
+                      {h.sketch && (
+                        <span className="char-tile-pic" aria-hidden>
+                          {h.emoji}
+                        </span>
+                      )}
                     </Link>
                   ))}
                 </div>
               </section>
             );
-          })
-        }
+          }),
+        ]}
       </ContentGate>
     </div>
+  );
+}
+
+const INTRO_PAIRS = [
+  ['☀️', '日'],
+  ['⛰️', '山'],
+  ['🌳', '木'],
+  ['🚶', '人'],
+];
+
+function PictographIntro({ count }: { count: number }) {
+  if (count === 0) return null;
+  return (
+    <section className="card picto-intro stack-sm">
+      <h2>{vi.hanzi.pictoTitle}</h2>
+      <p className="picto-intro-row" aria-hidden>
+        {INTRO_PAIRS.map(([emoji, char]) => (
+          <span key={char}>
+            {emoji} → <span lang="zh-CN">{char}</span>
+          </span>
+        ))}
+      </p>
+      <p className="muted">{vi.hanzi.pictoText(count)}</p>
+      <Link to="/games/glyph" className="btn btn--primary">
+        <Icon name="gamepad" size={18} />
+        {vi.hanzi.pictoGame}
+      </Link>
+    </section>
   );
 }
 
@@ -132,12 +168,19 @@ function HanziDetail({ item, next, prev }: { item: HanziItem; next?: HanziItem; 
     <div className="stack">
       <PageHeader title={`${item.char} · ${item.vi}`} back="/hanzi" />
       <section className="card hanzi-info">
-        {item.emoji && (
+        {item.sketch ? (
+          <PictographStrip item={item} />
+        ) : item.emoji && (
           <span className="hanzi-emoji" aria-hidden>
             {item.emoji}
           </span>
         )}
         <ZhText zh={item.char} pinyin={item.pinyin} size="xl" />
+        {item.kind && (
+          <p className="small">
+            <span className="kind-badge">{vi.hanzi.kinds[item.kind].name}</span> <span className="muted">{vi.hanzi.kinds[item.kind].text}</span>
+          </p>
+        )}
         <p>
           <strong>{item.vi}</strong>
           {prefs.showHanViet && (

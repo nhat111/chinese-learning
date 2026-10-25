@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { ContentGate } from '../components/ContentGate';
 import { Icon } from '../components/Icon';
 import { PageHeader } from '../components/Layout';
+import { PictographStrip } from '../components/Pictograph';
 import { MeaningQuestion, PictureQuestion, ToneQuestionView } from '../components/Questions';
 import { SpeakPractice } from '../components/SpeakPractice';
 import { StatusPanel } from '../components/StatusPanel';
@@ -123,6 +124,7 @@ function StepView({ step, onComplete, onNext }: { step: PlanStep; onComplete: (g
       return (
         <div className="stack">
           <div className="center stack-xs">
+            <PictographStrip item={step.item} />
             <ZhText zh={step.item.char} pinyin={step.item.pinyin} size="lg" />
             <p>{step.item.vi}</p>
           </div>

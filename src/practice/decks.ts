@@ -33,6 +33,7 @@ export type HanziGroup = (typeof HANZI_GROUPS)[number];
  * - tone:<zh>      tone quiz (by character, shared by words and hanzi)
  * - pic:<id>       "listen, pick the picture"
  * - mean:<id>      "what does it mean"
+ * - glyph:<id>     "see the picture, pick the character" (pictographs)
  */
 export const srsKey = {
   word: (id: string) => `word:${id}`,
@@ -42,4 +43,5 @@ export const srsKey = {
   tone: (zh: string) => `tone:${zh}`,
   pic: (id: string) => `pic:${id}`,
   mean: (id: string) => `mean:${id}`,
+  glyph: (id: string) => `glyph:${id}`,
 };

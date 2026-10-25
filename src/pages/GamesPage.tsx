@@ -3,13 +3,13 @@ import { Link, useParams } from 'react-router';
 import { ContentGate } from '../components/ContentGate';
 import { Icon, type IconName } from '../components/Icon';
 import { PageHeader } from '../components/Layout';
-import { MeaningQuestion, PictureQuestion, ToneQuestionView } from '../components/Questions';
+import { GlyphQuestion, MeaningQuestion, PictureQuestion, ToneQuestionView } from '../components/Questions';
 import { Round } from '../components/Round';
 import { StatusPanel } from '../components/StatusPanel';
 import { useContent, type ContentState } from '../data/content';
 import { vi } from '../i18n/vi';
 import { srsKey } from '../practice/decks';
-import { meaningQuestion, pickRound, pictureQuestion, shuffle, toneQuestion, toneTargets } from '../practice/quiz';
+import { glyphQuestion, meaningQuestion, pickRound, pictographs, pictureQuestion, shuffle, toneQuestion, toneTargets } from '../practice/quiz';
 import { todayKey } from '../srs/sm2';
 import { playEffect, speakChinese } from '../speech';
 import { usePrefs } from '../storage/prefs';
@@ -21,6 +21,7 @@ const GAMES: { kind: string; icon: IconName; tone: string }[] = [
   { kind: 'meaning', icon: 'book', tone: 'amber' },
   { kind: 'tone', icon: 'music', tone: 'blue' },
   { kind: 'match', icon: 'puzzle', tone: 'violet' },
+  { kind: 'glyph', icon: 'pen', tone: 'red' },
 ];
 
 const ROUND = 10;
@@ -89,6 +90,13 @@ function Game({ kind, words, hanzi }: { kind: string; words: WordItem[]; hanzi: 
   const key = `${kind}-${prefs.learner}`;
 
   if (kind === 'match') return <MatchGame key={`${key}-${match}`} words={pool} onAgain={() => setMatch((m) => m + 1)} />;
+  if (kind === 'glyph') {
+    const build = () => {
+      const pool = pictographs(hanzi);
+      return pickRound(pool, (h) => srsKey.glyph(h.id), getProgress().srs, todayKey(), ROUND).map((h) => glyphQuestion(h, pool));
+    };
+    return <Round key={key} build={build} render={(q, next, answered) => <GlyphQuestion question={q} onNext={next} onAnswer={answered} />} />;
+  }
   if (kind === 'tone') {
     const build = () => {
       const targets = toneTargets([...pool, ...hanzi.map((h) => ({ ...h, zh: h.char }))]);

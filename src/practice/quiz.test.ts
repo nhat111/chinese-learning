@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { CardState } from '../srs/sm2';
-import type { WordItem } from '../types';
-import { meaningQuestion, pickRound, pictureQuestion, seededRng, toneQuestion, toneTargets } from './quiz';
+import type { HanziItem, WordItem } from '../types';
+import { glyphQuestion, meaningQuestion, pickRound, pictureQuestion, seededRng, toneQuestion, toneTargets } from './quiz';
 
 const w = (id: string, topic: string, zh: string, pinyin: string, vi: string, emoji?: string): WordItem => ({
   id,
@@ -70,5 +70,24 @@ describe('pickRound', () => {
 
   it('returns at most n items', () => {
     expect(pickRound(['a', 'b', 'c'], (x) => x, {}, '2026-01-01', 2)).toHaveLength(2);
+  });
+});
+
+describe('glyphQuestion', () => {
+  const h = (id: string, char: string): HanziItem => ({ id, group: 'nature', char, pinyin: 'x', vi: id, hv: 'x', kind: 'pictograph', words: [] });
+  const pool = [h('a', '日'), h('b', '月'), h('c', '山'), h('d', '水'), h('e', '火')];
+
+  it('offers the target and 3 other characters', () => {
+    const q = glyphQuestion(pool[2], pool, seededRng(5));
+    expect(q.options).toHaveLength(4);
+    expect(q.options[q.answer]).toBe(pool[2]);
+    expect(new Set(q.options.map((o) => o.char)).size).toBe(4);
+  });
+});
+
+describe('pickRound in order', () => {
+  it('keeps new items in content order', () => {
+    const items = ['a', 'b', 'c', 'd', 'e'];
+    expect(pickRound(items, (x) => x, {}, '2026-10-23', 3, seededRng(6), true)).toEqual(['a', 'b', 'c']);
   });
 });
