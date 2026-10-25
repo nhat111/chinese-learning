@@ -850,9 +850,11 @@ fieldset {
   border-color: var(--primary);
   background: var(--primary-soft);
 }
-.option-emoji {
-  font-size: 2.4rem;
-  line-height: 1.1;
+.option-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-bottom: 4px;
 }
 
 /* ---------- Lists ---------- */

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { vi } from '../i18n/vi';
+import { Icon } from './Icon';
 import { updatePrefs, usePrefs, type DailyMinutes, type Learner } from '../storage/prefs';
 
 const MINUTES: DailyMinutes[] = [5, 10, 15];
@@ -35,8 +36,8 @@ export function Welcome() {
         <div className="option-grid">
           {(['kid', 'adult'] as const).map((l) => (
             <button key={l} type="button" className={`option${learner === l ? ' is-picked' : ''}`} aria-pressed={learner === l} onClick={() => setLearner(l)}>
-              <span className="option-emoji" aria-hidden>
-                {l === 'kid' ? '👧' : '🧑‍💼'}
+              <span className={`card-icon option-icon card-icon--${l === 'kid' ? 'amber' : 'blue'}`} aria-hidden>
+                <Icon name={l === 'kid' ? 'baby' : 'user'} size={30} />
               </span>
               <strong>{l === 'kid' ? vi.welcome.kid : vi.welcome.adult}</strong>
               <span className="muted small">{l === 'kid' ? vi.welcome.kidText : vi.welcome.adultText}</span>
