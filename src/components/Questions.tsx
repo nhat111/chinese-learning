@@ -9,9 +9,10 @@ import type { Question, ToneQuestion } from '../practice/quiz';
 import { speakChinese } from '../speech';
 import { usePrefs } from '../storage/prefs';
 import { recordAnswer } from '../storage/progress';
-import type { WordItem } from '../types';
+import type { HanziItem, WordItem } from '../types';
 import { Choice } from './Choice';
 import { Icon } from './Icon';
+import { Sketch } from './Pictograph';
 import { ZhText } from './Zh';
 
 interface Props<Q> {
@@ -89,6 +90,49 @@ export function MeaningQuestion({ question, onNext, onAnswer, nextLabel }: Props
       }
       onAnswer={(right) => {
         recordAnswer(srsKey.mean(target.id), right);
+        onAnswer?.(right);
+      }}
+      onNext={onNext}
+      nextLabel={nextLabel}
+    />
+  );
+}
+
+/** See a real thing and its simple drawing, pick the pictograph drawn from it. */
+export function GlyphQuestion({ question, onNext, onAnswer, nextLabel }: Props<Question<HanziItem>>) {
+  const { target } = question;
+  return (
+    <Choice
+      key={target.id}
+      prompt={
+        <>
+          <p className="question-text">{vi.games.glyphQ}</p>
+          <div className="glyph-prompt" aria-label={target.vi}>
+            <span className="picto-emoji" aria-hidden>
+              {target.emoji}
+            </span>
+            <Icon name="chevronRight" size={18} />
+            {target.sketch && <Sketch d={target.sketch} size={88} />}
+          </div>
+        </>
+      }
+      tiles
+      options={question.options.map((o) => (
+        <span key={o.id} lang="zh-CN" className="tile-char">
+          {o.char}
+        </span>
+      ))}
+      answer={question.answer}
+      explain={
+        <div className="stack-xs">
+          <ZhText zh={target.char} pinyin={target.pinyin} size="md" />
+          <p className="muted">{target.vi}</p>
+          {target.note && <p className="note small">{target.note}</p>}
+        </div>
+      }
+      onAnswer={(right) => {
+        recordAnswer(srsKey.glyph(target.id), right);
+        void speakChinese(target.char);
         onAnswer?.(right);
       }}
       onNext={onNext}

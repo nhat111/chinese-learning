@@ -30,6 +30,9 @@ function level(o: Obj): o is Obj & { level: 1 | 2 | 3 } {
 }
 
 const HAN = /^\p{Script=Han}+$/u;
+const HANZI_KINDS = ['pictograph', 'indicative', 'compound'];
+/** Path commands and numbers only, starting with a move. */
+const SVG_PATH = /^M[\d\s.,MmLlHhVvCcSsQqAaZz-]+$/;
 
 function parseFile<T>(data: unknown, check: (item: Obj) => string | null): ParseResult<T> {
   if (!isObj(data) || data.version !== 1 || !Array.isArray(data.items)) {
@@ -99,6 +102,11 @@ export function parseHanzi(data: unknown): ParseResult<HanziItem> {
     if (!(HANZI_GROUPS as readonly unknown[]).includes(o.group)) return 'unknown group';
     if (!str(o, 'pinyin') || !str(o, 'vi') || !str(o, 'hv')) return 'missing pinyin, vi or hv';
     if (!optStr(o, 'emoji') || !optStr(o, 'note')) return 'bad emoji or note';
+    if (o.kind !== undefined && !HANZI_KINDS.includes(o.kind as string)) return 'bad kind';
+    if (o.sketch !== undefined) {
+      if (o.kind !== 'pictograph' || !str(o, 'emoji')) return 'only pictographs with an emoji have a sketch';
+      if (typeof o.sketch !== 'string' || !SVG_PATH.test(o.sketch)) return 'sketch must be SVG path data';
+    }
     if (!Array.isArray(o.words) || o.words.length < 1 || o.words.length > 3 || !o.words.every(isHanziWord)) {
       return 'needs 1-3 words';
     }

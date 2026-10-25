@@ -30,10 +30,10 @@ JSON content, localStorage progress, PWA, no accounts.
 public/data/      words, phrases, pinyin, hanzi .json (+ audio-index.json, generated)
 public/audio/zh/  natural-voice MP3s (npm run tts), named audioKey(text)
 src/types.ts      content types; src/data/validate.ts mirrors them (update both)
-src/practice/     pure, tested: pinyin.ts (tones), quiz.ts (questions, rounds), plan.ts (daily lesson), stats.ts, decks.ts (topics + SRS keys)
+src/practice/     pure, tested: pinyin.ts (tones), quiz.ts (questions, rounds), plan.ts (daily lesson, new items in content order), path.ts ("Lộ trình từ số 0" on Home), stats.ts, decks.ts (topics + SRS keys)
 src/speaking/     compare.ts (character LCS score), recognition.ts (zh-CN), recorder.ts, audioKey.ts (pinned hash)
 src/storage/      prefs.ts, progress.ts: the only modules that touch localStorage
-src/components/   Layout, Zh (ZhText, SpeakButton), Choice, Questions, Round, WordCard, SpeakPractice, HanziWriterBox, Welcome
+src/components/   Layout, Zh (ZhText, SpeakButton), Choice, Questions, Round, WordCard, SpeakPractice, HanziWriterBox, Pictograph, Welcome
 src/pages/        Home, Daily, Review, Pinyin(+lesson), Words(+topic), Hanzi(+detail), Phrases, Games(+play), Progress, Settings
 ```
 
@@ -48,14 +48,18 @@ src/pages/        Home, Daily, Review, Pinyin(+lesson), Words(+topic), Hanzi(+de
 - `pinyin.json`: lessons (`tone | initial | final | sandhi`); each sound is taught through an example word `zh`
   (that is what is read aloud), `tip` compares with Vietnamese sounds. Sounds are keyed by index: only append.
 - `hanzi.json`: one character, `group` in `HANZI_GROUPS`, `hv`, optional `note` (pictograph origin / memory hook),
-  1-3 `words` containing the character.
+  1-3 `words` containing the character. Optional `kind` (`pictograph | indicative | compound`). Pictographs carry
+  `emoji` (the real thing), `sketch` (SVG path data, viewBox 100, strokes; each `M` subpath draws in turn) and a
+  `note` that walks from the real thing to the strokes; they get the "Ngoài đời → Vẽ lại → Chữ Hán" strip and the
+  glyph game. Pictograph emoji are unique (tested).
+- Content order matters: the daily lesson teaches new words and characters in file order, easiest first.
 - After adding or editing content run `npm run tts` (needs `pip install edge-tts`, ffmpeg; behind a TLS proxy set
   `TTS_CA_FILE`). Missing files fall back to the device voice.
 
 ## Progress and SRS
 
 - `zv:progress:v1`: `srs` (SM-2 cards) and `daily` (answers, correct = stars, planSteps, recordMs). Keys from
-  `srsKey` in `src/practice/decks.ts`: `word:`, `phrase:`, `hanzi:`, `pinyin:<lesson>:<i>`, `tone:<zh>`, `pic:`, `mean:`.
+  `srsKey` in `src/practice/decks.ts`: `word:`, `phrase:`, `hanzi:`, `pinyin:<lesson>:<i>`, `tone:<zh>`, `pic:`, `mean:`, `glyph:`.
 - `zv:prefs:v1`: learner (`kid | adult`), minutes, onboarded, speechRate, voiceSource, showPinyin, showHanViet,
   effects. Missing fields default. Shape changes need a migration, not dropped data.
 - Wrap storage access in try/catch; the app must work with storage unavailable.

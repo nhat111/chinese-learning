@@ -24,6 +24,14 @@ describe('buildDailyPlan', () => {
     expect(plan.map((s) => s.kind)).toEqual(['word', 'word', 'word', 'meaning', 'meaning', 'tone', 'tone', 'hanzi', 'phrase']);
   });
 
+  it('teaches a new learner the first words in content order', () => {
+    const plan = buildDailyPlan(content, {}, '2026-10-23', 5, 'adult', seededRng(4));
+    const taught = plan.flatMap((s) => (s.kind === 'word' ? [s.item.id] : []));
+    expect(taught).toEqual(content.words.slice(0, 3).map((w) => w.id));
+    const hanzi = plan.flatMap((s) => (s.kind === 'hanzi' ? [s.item.char] : []));
+    expect(hanzi).toEqual(['一']);
+  });
+
   it('asks about the words it just taught', () => {
     const plan = buildDailyPlan(content, {}, '2026-10-23', 5, 'adult', seededRng(2));
     const taught = plan.flatMap((s) => (s.kind === 'word' ? [s.item.id] : []));
