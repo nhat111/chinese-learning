@@ -36,7 +36,7 @@ export function Welcome() {
           {(['kid', 'adult'] as const).map((l) => (
             <button key={l} type="button" className={`option${learner === l ? ' is-picked' : ''}`} aria-pressed={learner === l} onClick={() => setLearner(l)}>
               <span className="option-emoji" aria-hidden>
-                {l === 'kid' ? '🧒' : '🧑'}
+                {l === 'kid' ? '👧' : '🧑‍💼'}
               </span>
               <strong>{l === 'kid' ? vi.welcome.kid : vi.welcome.adult}</strong>
               <span className="muted small">{l === 'kid' ? vi.welcome.kidText : vi.welcome.adultText}</span>
